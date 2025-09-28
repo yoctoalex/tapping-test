@@ -201,6 +201,67 @@
       transform: translateY(-1px);
     }
   }
+  
+  /* QR Code styles - only show on desktop */
+  .qr-mobile-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    position: relative;
+    overflow: visible;
+    padding: 16px 10px;
+  }
+  .qr-mobile-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .qr-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+    min-height: 140px;
+    padding: 8px 0;
+  }
+  .qr-info {
+    flex: 1;
+  }
+  .qr-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: white;
+  }
+  .qr-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin: 0;
+  }
+  .qr-code-container {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .qr-code-container img {
+    display: block;
+    width: 120px;
+    height: 120px;
+  }
+  
+  /* Hide QR code on mobile devices */
+  @media (max-width: 768px) {
+    .qr-mobile-card {
+      display: none !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -209,6 +270,19 @@
   <div class="card hdr">
     <h1>Тепінг-тест Ільїна (30 с, 6 інтервалів × 5 с)</h1>
     <span class="pill">Протокол: 30 с · крок 5 с · 6 квадратів</span>
+  </div>
+
+  <!-- QR Code for Mobile Access - Desktop Only -->
+  <div class="card qr-mobile-card">
+    <div class="qr-content">
+      <div class="qr-info">
+        <h3 class="qr-title">📱 Обов'язково на мобільному!</h3>
+        <p class="qr-subtitle">Тест необхідно проводити на телефоні для точних результатів. Відскануйте QR-код.</p>
+      </div>
+      <div class="qr-code-container">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A//yoctoalex.github.io/tapping-test/" alt="QR код для мобільної версії" />
+      </div>
+    </div>
   </div>
 
   <div class="card">
